@@ -7,7 +7,7 @@
 
 //Define this to use UTF-8 encoding of native strings.  If the native encoding
 //may not be UTF-8, leave this undefined to use the native encoding.
-//#define USE_UTF_8
+#define USE_UTF_8
 
 extern "C" {
 
@@ -391,7 +391,7 @@ JShortcutSave(		// Save a shortcut
 	strcat(buf,"\\");
 	strcat(buf,name);
 	strcat(buf,".lnk");
-	MultiByteToWideChar(CP_ACP,0,buf,-1,wName,MAX_PATH);
+	MultiByteToWideChar(CP_UTF8,0,buf,-1,wName,MAX_PATH);
 
 	// Load the file if it exists, to get the values for anything
 	// that we do not set.  Ignore errors, such as if it does not exist.
@@ -496,7 +496,7 @@ JShortcutLoad(		// Load a shortcut
 	strcat(buf,"\\");
 	strcat(buf,name);
 	strcat(buf,".lnk");
-	MultiByteToWideChar(CP_ACP,0,buf,-1,wName,MAX_PATH);
+	MultiByteToWideChar(CP_UTF8,0,buf,-1,wName,MAX_PATH);
 
 	//Load the shortcut From disk
 	h = persistFile->Load(wName, 0);
